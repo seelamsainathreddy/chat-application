@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -127,4 +128,18 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False  # Use this instead of CORS_ALLOW_ALL_ORIGINS
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5174",  # Add your allowed origins here
+        "http://localhost:5173",  # Add your allowed origins here
+
+]
+
+CORS_ALLOW_CREDENTIALS = True  # Allow credentials to be included in requests
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}
